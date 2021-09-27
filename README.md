@@ -47,7 +47,7 @@ docker-compose exec app php artisan treasure:hunter
 please import postman collection file to try the API `test app.postman_collection.json` 
 
 flow:
--- hit get product list API to get SKU in the response of API
--- hit add product to cart to get order ID. you can use order ID in body with "order_id" parameter to make multiple item in one order.
--- hit checkout API to convert cart to order. you can use product list API to check the reserved qty already decreased or not
--- hit cancel order API to bring back reserved qty or hit pay order API to decrease qty of product
+- hit get product list API to get SKU in the response of API
+- hit add product to cart to get order ID. you can use order ID in body with "order_id" parameter to make multiple item in one order.
+- hit checkout API to convert cart to order. you can use product list API to check the reserved qty already decreased or not
+- hit cancel order API to bring back reserved qty or hit pay order API to decrease qty of product
