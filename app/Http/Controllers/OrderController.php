@@ -6,29 +6,9 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Services\OrderService;
 
-class CartController extends Controller
+class OrderController extends Controller
 {
-    public function addProduct(Request $request,OrderService $orderService){
-        $validator =  Validator::make($request->all(), [
-            'sku' => 'required',
-            'qty' => 'required',
-        ]);
-
-        if ($validator->fails()) {
-            return response()->json(
-                [
-                    "status"=>401,
-                    "message"=>$validator->errors()->toArray(),
-                    "result"=>[]
-                ], 400);
-        }
-
-        return response()->json($orderService->addToCart($request->all()));
-
-
-    }
-
-    public function checkout(Request $request,OrderService $orderService){
+    public function cancel(Request $request,OrderService $orderService){
         $validator =  Validator::make($request->all(), [
             'order_id' => 'required',
         ]);
@@ -42,8 +22,25 @@ class CartController extends Controller
                 ], 400);
         }
 
-        return response()->json($orderService->checkout($request->all()));
+        return response()->json($orderService->cancel($request->all()));
 
+    }
+
+    public function pay(Request $request,OrderService $orderService){
+        $validator =  Validator::make($request->all(), [
+            'order_id' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return response()->json(
+                [
+                    "status"=>401,
+                    "message"=>$validator->errors()->toArray(),
+                    "result"=>[]
+                ], 400);
+        }
+
+        return response()->json($orderService->paid($request->all()));
 
     }
 }

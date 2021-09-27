@@ -19,18 +19,16 @@ class ProductOrderTable extends Migration
             $table->string('sku')->unique();
             $table->integer('qty');
             $table->integer('reserved_qty');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->double('grand_total', 10, 2);
             $table->string('status');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
+            $table->timestamps();
         });
 
         Schema::create('orders_item', function (Blueprint $table) {
@@ -38,9 +36,8 @@ class ProductOrderTable extends Migration
             $table->integer('order_id');
             $table->string('sku');
             $table->integer('qty');
-            $table->timestamp('created_at')->nullable();
-            $table->timestamp('updated_at')->nullable();
             $table->timestamp('deleted_at')->nullable();
+            $table->timestamps();
         });
     }
 
